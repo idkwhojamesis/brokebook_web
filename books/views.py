@@ -1,14 +1,29 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, FormView
 from django.views.generic.list import ListView
 from django import forms
 from books.models import Book
+from .forms import SearchForm
+from django.urls import reverse_lazy
 
 # Create your views here.
+
+class BookHome(DetailView):   
+    template_name='books/book_home.html'
+    form_class = SearchForm
+
 def index(request):
-    return HttpResponse("Hello, world. You're at the books index.")
+    if request.method == 'GET':
+        form = SearchForm(request.GET)
+        # check whether it's valid:
+        if form.is_valid():
+            q = form.cleaned_data.get('user_query')
+            return HttpResponseRedirect(reverse_lazy('books:search', args=[q]))
+    else:
+        form = NameForm()
+    return render(request, 'books/book_home.html', {'form': form})
 
 class BookSearch(ListView):
     template_name='books/book_results.html'
@@ -37,6 +52,7 @@ class BookCreate(CreateView):
     fields = [
         'post_type', 
         'book_title',
+        'book_author',
         'campus', 
         'professor', 
         'class_subject', 

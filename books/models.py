@@ -30,6 +30,7 @@ class Book(models.Model):
     date_created= models.DateTimeField(auto_now=True, editable=False)
     post_type= models.BooleanField('Offer(T)/Ask(F)')
     book_title= models.CharField(max_length=150)
+    book_author= models.CharField(max_length=150, null=True, blank=True)
     campus= models.CharField(max_length=2, choices=CAMPUS_CHOICES)
     professor= models.CharField(max_length=20)
     class_subject= models.CharField(max_length=8)
