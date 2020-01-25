@@ -1,0 +1,13 @@
+<ul>
+    <p>{{object_list}}</p>
+{% for Book in object_list %}
+    <li><a href="{% url 'books:detail' Book.id %}">{{Book.book_title}}</a></li>
+    <ul>
+        <li>Offer(T)/Ask(F): {{Book.post_type}}</li>
+        <li>{{Book.campus}}</li>
+        <li>{{Book.professor}}</li>
+        <li>{{Book.class_subject}}</li>
+        <li>{{Book.contact_info}}</li>
+    </ul>
+{% endfor %}
+</ul>
