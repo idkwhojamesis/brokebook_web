@@ -12,4 +12,5 @@
 - TODO: Utilize full-text search? Debating whether this is necessary
 ### 3. Web frontend
 - Bootstrap CSS for clean look
-- TODO: Translate design draft to Django templates (current prototype not stylized)
+- Organized through tables and cards
+- TODO: fix homepage
