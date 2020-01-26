@@ -43,11 +43,6 @@ class BookDetail(DetailView):
     template_name='books/book_detail.html'
     model = Book
 
-class BookList(ListView):
-    template_name='books/book_results.html'
-    model = Book
-    paginate_by = 5
-
 class BookCreate(CreateView):
     #template_name='books/book_form.html'
     template_name='books/book_form.html'

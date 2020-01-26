@@ -12,12 +12,12 @@
   <body>
     <script src="{{ scriptJS }}"></script>
     <div class="container")>
-      <h1>{% block headline %}bbdemo{% endblock %}</h1>
-      <h2>give or get free textbooks</h2>
+      <h1 class="site_head">{% block headline %}bbdemo{% endblock %}</h1>
+      <h2 class="site_head">give or get free textbooks</h2>
       <p>
         test links:  
         <a href="{% url 'books:index' %}">home</a>
-        <a href="{% url 'books:search' 'gente' %}">results ex(gente)</a>
+        <a href="{% url 'books:search' 'ALLBOOKS' %}">booklist</a>
         <a href="{% url 'books:form' %}">form</a>
       </p>
     </div>

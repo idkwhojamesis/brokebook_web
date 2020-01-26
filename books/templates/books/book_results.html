@@ -1,6 +1,8 @@
 {% extends "books/book_base.html" %}
-
+{% block title %}{{ user_query }}{% endblock %}
 {% block content %}
+{% load tz %}{% timezone "EST" %}
+{% get_current_timezone as TIME_ZONE %}
 <table class="table">
     <thead>
         <tr>
@@ -9,7 +11,7 @@
             <th scope="col">Title</th>
             <th scope="col">Class</th>
             <th scope="col">Professor</th>
-            <th scope="col">Date/Time(UTC)</th>
+            <th scope="col">Date/Time({{TIME_ZONE}})</th>
         </tr>
     </thead>
     <tbody>
@@ -48,4 +50,5 @@
         {% endif %}
     </span>
 </div>
+{% endtimezone %}
 {% endblock %}

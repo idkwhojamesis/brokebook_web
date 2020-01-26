@@ -12,7 +12,11 @@ class Book(models.Model):
         ('S', 'Spring'),
         ('U', 'Summer'),
     ]
-    # Find a way to dynamically update year list?
+    '''
+    Find a way to dynamically update year list?
+    Considering making custom YearField from python datetime.date.year
+    and setting choices to (current year)+/-2
+    '''
     YEAR_CHOICES = [
         (2017, '2017'),
         (2018, '2018'),
@@ -27,6 +31,8 @@ class Book(models.Model):
         (4, 'Bad'),
         (5, 'Unusable/Missing Parts'),
     ]
+    # Add email EmailField (adds validation)
+    # (?) Change class fields to subj(options) + class number
     date_created= models.DateTimeField(auto_now=True, editable=False)
     post_type= models.BooleanField('Offer(T)/Ask(F)')
     book_title= models.CharField(max_length=150)

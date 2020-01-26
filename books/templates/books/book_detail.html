@@ -1,18 +1,38 @@
 {% extends "books/book_base.html" %}
 
 {% block content %}
-<h1>{{object.book_title}}</h1>
-<p>Author: {{object.book_author}}</p>
-<p>Date Created: {{object.date_created}}</p>
-<p>Post Type: {{object.post_type}}</p>
-<p>Campus: {{object.campus}}</p>
-<p>Prof: {{object.professor}}</p>
-<p>Class: {{object.class_subject}}</p>
-<p>Section: {{object.class_section}}</p>
-<p>Semester: {{object.semester}}</p>
-<p>Year: {{object.year}}</p>
-<p>Online Code? {{object.online_code}}</p>
-<p>Edition: {{object.edition}}</p>
-<p>Condition: {{object.condition}}</p>
-<p>Contact Info: {{object.contact_info}}</p>
+{% load tz %}{% timezone "EST" %}
+<h1 class="site_head">{% if object.post_type == True %} OFFER</th>{% else %} WANTED</th>{% endif %}</h1>
+<h2 class="site_head"><i>{{object.book_title}}</i> <small>for</small> {{object.class_subject}}</h2>
+<div class="container">
+    <div class="card card-body" style="margin: auto; width: 70%;">
+    <table class="table table-bordered">
+        <tr><th scope="row">Author</th><td>{{object.book_author}}</td></tr>
+        <tr><th scope="row">Professor</th><td>{{object.professor}}</td></tr>
+        <tr><th scope="row">Campus</th><td>{{object.campus}}</td></tr>
+        <tr><th scope="row">Semester</th><td>{{object.semester}} {{object.year}}</td></tr>
+        <tr><th scope="row">Condition</th><td>{{object.condition}}</td></tr>
+    </table>
+    </div>
+</div>
+<div class="container">
+    <div class="card card-body" style="margin: auto; width: 70%;">
+        <table class="table table-borderless">
+            <tr><th>Contact Info</th></tr>
+            <tr><td>{{object.contact_info}}</td></tr>
+        </table>
+    </div>
+</div>
+<div class="container">
+    <div class="card card-body" style="margin: auto; width: 70%;">
+        <table class="table table-borderless table-sm">
+            <tr><th>Additional Info</th></tr>
+            <tr><th scope="row">Date Created</th><td>{{object.date_created|date:'h:i a e (m/d/Y)'}}</td></tr>
+            <tr><th scope="row">Section</th><td>{{object.class_section}}</td></tr>
+            <tr><th scope="row">Edition</th><td>{{object.edition}}</td></tr>
+            <tr><th scope="row">Online Code?</th><td>{{object.online_code}}</td></tr>
+        </table>
+    </div>
+</div>
+{% endtimezone %}
 {% endblock %}
