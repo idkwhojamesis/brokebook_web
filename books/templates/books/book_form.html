@@ -1,4 +1,19 @@
+{% extends "books/book_base.html" %}
+<!--title-->
+{% block title %}
+submit a book
+{% endblock %}
+<!--headline-->
+{% block headline %}
+book form
+{% endblock %}
+<!--form-->
+{% block content %}
 <form method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Send message">
+    <table class="table table-bordered">
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="Submit">
 </form>
+
+{% endblock %}

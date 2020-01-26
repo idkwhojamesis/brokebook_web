@@ -1,17 +1,36 @@
-<ul>
-    <p>{{object_list}}</p>
-{% for Book in object_list %}
-    <li><a href="{% url 'books:detail' Book.id %}">{{Book.book_title}}</a></li>
-    <ul>
-        <li>Offer(T)/Ask(F): {{Book.post_type}}</li>
-        <li>{{Book.campus}}</li>
-        <li>{{Book.professor}}</li>
-        <li>{{Book.class_subject}}</li>
-        <li>{{Book.class_section}}</li>
-        <li>{{Book.contact_info}}</li>
-    </ul>
-{% endfor %}
-</ul>
+{% extends "books/book_base.html" %}
+
+{% block content %}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Type</th>
+            <th scope="col">Campus</th>
+            <th scope="col">Title</th>
+            <th scope="col">Class</th>
+            <th scope="col">Professor</th>
+            <th scope="col">Date/Time(UTC)</th>
+        </tr>
+    </thead>
+    <tbody>
+    <!--change # of items per page in view-->
+    {% for Book in object_list %}
+        {% if Book.post_type == False %}
+        <tr class="table-warning">
+            <td>Ask</td>
+        {% else %}
+        <tr>
+            <td>Offer</td>
+        {% endif %}
+            <td>{{Book.campus}}</td>
+            <td><a href="{% url 'books:detail' Book.id %}">{{Book.book_title}}</a></td>
+            <td>{{Book.class_subject}}</td>
+            <td>{{Book.professor}}</td>
+            <td>{{Book.date_created|date:'h:i a (m/d/y)'}}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
 <div class="pagination">
     <span class="step-links">
         {% if page_obj.has_previous %}
@@ -20,7 +39,7 @@
         {% endif %}
 
         <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
         </span>
 
         {% if page_obj.has_next %}
@@ -29,3 +48,4 @@
         {% endif %}
     </span>
 </div>
+{% endblock %}

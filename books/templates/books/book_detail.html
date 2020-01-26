@@ -1,3 +1,6 @@
+{% extends "books/book_base.html" %}
+
+{% block content %}
 <h1>{{object.book_title}}</h1>
 <p>Author: {{object.book_author}}</p>
 <p>Date Created: {{object.date_created}}</p>
@@ -12,3 +15,4 @@
 <p>Edition: {{object.edition}}</p>
 <p>Condition: {{object.condition}}</p>
 <p>Contact Info: {{object.contact_info}}</p>
+{% endblock %}

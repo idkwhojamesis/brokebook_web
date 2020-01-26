@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% load static %}
+    {% static "books/style.css" as styleCSS %}
+    {% static "books/script.js" as scriptJS %}
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}brokebook{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="{{ styleCSS }}" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <script src="{{ scriptJS }}"></script>
+    <div class="container")>
+      <h1>{% block headline %}bbdemo{% endblock %}</h1>
+      <h2>give or get free textbooks</h2>
+      <p>
+        test links:  
+        <a href="{% url 'books:index' %}">home</a>
+        <a href="{% url 'books:search' 'gente' %}">results ex(gente)</a>
+        <a href="{% url 'books:form' %}">form</a>
+      </p>
+    </div>
+    <!--content-->
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div> 
+  </body>
+</html>
